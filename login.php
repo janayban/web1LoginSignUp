@@ -40,7 +40,7 @@
                         <button type="submit" class="btn btn-outline-dark w-100 text-white">Login</button>
                         
                         <div class="d-flex justify-content-center align-items-center mt-3 text-center flex-column flex-sm-row">
-                            <p class="mb-0">Not registered? <a href="register.html"  class="d-block d-sm-inline">Create an account</a></p>
+                            <p class="mb-0">Not registered? <a href="register.php"  class="d-block d-sm-inline">Create an account</a></p>
                         </div>
                     </form>
                 </div>

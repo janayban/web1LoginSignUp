@@ -1,4 +1,6 @@
-<?php include('server.php') ?>
+<?php include('registration_connection.php') ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +25,7 @@
                     <div id="alert" class="alert d-none"></div>
             
                     <!--  form -->
-                    <form id="loginForm" method="POST" action="server.php" onsubmit="validateForm(event)">
+                    <form id="loginForm" method="POST" action="" onsubmit="validateForm(event)">
                         <div class="row">
                             <div class="col-6 col-sm-6">
                                 <div class="mb-3">
@@ -64,7 +66,7 @@
                         <button type="submit" class="btn btn-outline-dark w-100 text-white" id="register">Register</button>
                         
                         <div class="d-flex justify-content-center align-items-center mt-3 text-center flex-column flex-sm-row">
-                            <p class="mb-0">Already have an account? <a href="login.html" >Login</a></p>
+                            <p class="mb-0">Already have an account? <a href="login.php" >Login</a></p>
                         </div>
                     </form>
                 </div>
@@ -201,11 +203,12 @@
                 alertDiv.innerText = "Passwords do not match";
                 return;
             }
+
             
-            // Success
-            alertDiv.classList.remove("d-none", "alert-danger");
-            alertDiv.classList.add("alert-success");
-            alertDiv.innerText = "Login Successful";
+            // // Success
+            // alertDiv.classList.remove("d-none", "alert-danger");
+            // alertDiv.classList.add("alert-success");
+            // alertDiv.innerText = "Login Successful";
     
             // Submit form after a short delay
             setTimeout(() => {

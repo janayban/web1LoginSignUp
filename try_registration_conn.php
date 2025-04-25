@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
     // Check if username or contact already exists
-    $checkSql = "SELECT * FROM user WHERE username = ? OR contact = ?";
+    $checkSql = "SELECT * FROM users WHERE username = ? OR contact = ?";
     $checkStmt = $conn->prepare($checkSql);
     $checkStmt->bind_param("ss", $username, $contact);
     $checkStmt->execute();
@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     } else {
         // Insert new user
-        $sql = "INSERT INTO user (first_name, last_name, contact, username, password) VALUES (?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO users (first_name, last_name, contact, username, password) VALUES (?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("sssss", $firstName, $lastName, $contact, $username, $hashedPassword);
 

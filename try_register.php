@@ -31,27 +31,26 @@
                 <?php endif; ?>
 
                 <!-- Registration Form -->
-                <!-- Registration Form -->
                 <form id="registerForm" method="POST" action="" onsubmit="validateForm(event)">
                     <div class="row">
                         <div class="col-sm-6 mb-3">
                             <label for="firstName" class="form-label">First Name</label>
-                            <input type="text" name="firstName" id="firstName" class="form-control" placeholder="Enter First Name" value="<?php echo htmlspecialchars($_POST['firstName'] ?? ''); ?>">
+                            <input type="text" name="firstName" id="firstName" class="form-control" placeholder="Enter First Name">
                         </div>
                         <div class="col-sm-6 mb-3">
                             <label for="lastName" class="form-label">Last Name</label>
-                            <input type="text" name="lastName" id="lastName" class="form-control" placeholder="Enter Last Name" value="<?php echo htmlspecialchars($_POST['lastName'] ?? ''); ?>">
+                            <input type="text" name="lastName" id="lastName" class="form-control" placeholder="Enter Last Name">
                         </div>
                     </div>
 
                     <div class="mb-3">
                         <label for="contact" class="form-label">Contact</label>
-                        <input type="text" name="contact" id="contact" class="form-control" placeholder="Enter Contact" value="<?php echo htmlspecialchars($_POST['contact'] ?? ''); ?>">
+                        <input type="text" name="contact" id="contact" class="form-control" placeholder="Enter Contact">
                     </div>
 
                     <div class="mb-3">
                         <label for="username" class="form-label">Username</label>
-                        <input type="text" name="username" id="username" class="form-control" placeholder="Enter Username" value="<?php echo htmlspecialchars($_POST['username'] ?? ''); ?>">
+                        <input type="text" name="username" id="username" class="form-control" placeholder="Enter Username">
                     </div>
 
                     <div class="mb-3">
@@ -67,7 +66,7 @@
                     <button type="submit" class="btn btn-outline-light w-100">Register</button>
 
                     <p class="text-center mt-3">Already have an account? <a href="login.php">Login</a></p>
-                </form> 
+                </form>
             </div>
         </div>
     </div>
@@ -97,7 +96,7 @@
         const oneUpper = /[A-Z]/;
         const oneLower = /[a-z]/;
         const oneDigit = /\d/;
-        const oneSpecial = /[@$!%*?&./]/;
+        const oneSpecial = /[@$!%*?&]/;
 
         if (!firstName || !lastName || !contact || !username || !password || !confirmPassword) {
             return showAlert("All fields are required");

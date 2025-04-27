@@ -14,7 +14,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
 </head>
 
-<body class="d-flex justify-content-center align-items-center vh-100" style="background-image: url(bg.png); background-size: cover; background-position: center;">
+<body class="d-flex justify-content-center align-items-center vh-100" style="background-image: url(Assets/bg.png); background-size: cover; background-position: center;">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8 col-lg-6">

@@ -6,12 +6,12 @@ $registrationSuccess = false;
 $errorMessage = "";
 
 // Set fallback values to repopulate the form
-$firstName = $_POST['firstName'] ?? '';
-$lastName = $_POST['lastName'] ?? '';
-$contact = $_POST['contact'] ?? '';
-$username = $_POST['username'] ?? '';
-$password = $_POST['password'] ?? '';
-$confirmPassword = $_POST['confirmPassword'] ?? '';
+$firstName = trim($_POST['firstName'] ?? '');
+$lastName = trim($_POST['lastName'] ?? '');
+$contact = trim($_POST['contact'] ?? '');
+$username = trim($_POST['username'] ?? '');
+$password = trim($_POST['password'] ?? '');
+$confirmPassword = trim($_POST['confirmPassword'] ?? '');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Basic required field validation
@@ -28,19 +28,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $result = $checkStmt->get_result();
 
         if ($result->num_rows > 0) {
-            $existingUser = $result->fetch_assoc();
-
-            if ($existingUser['contact'] === $contact) {
+            $contactExists = false;
+            $usernameExists = false;
+        
+            while ($existingUser = $result->fetch_assoc()) {
+                if ($existingUser['contact'] == $contact) {
+                    $contactExists = true;
+                }
+                if ($existingUser['username'] == $username) {
+                    $usernameExists = true;
+                }
+            }
+        
+            if ($contactExists && $usernameExists) {
+                $errorMessage = "Contact number and username are already in use.";
+                $contact = '';
+                $username = '';
+            } 
+            elseif ($contactExists) {
                 $errorMessage = "Contact number is already in use.";
-                $contact = ''; // clear only contact
-            }
-
-            if ($existingUser['username'] === $username) {
+                $contact = '';
+            } 
+            elseif ($usernameExists) {
                 $errorMessage = "Username already exists. Please choose another.";
-                $username = ''; // clear only username
+                $username = '';
             }
-  
-        } else {
+        
+        } 
+        else {
             // Insert user
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
             $insertSql = "INSERT INTO users (first_name, last_name, contact, username, password) VALUES (?, ?, ?, ?, ?)";

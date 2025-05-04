@@ -10,7 +10,7 @@
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
      <!-- Bootstrap Icons -->
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
 </head>
 
@@ -106,7 +106,7 @@
             const onlyChars = /^[A-Za-z]+$/;
             const onlyNumbers = /^\d+$/;
             const min8Chars = /^.{8,}$/;
-            const min11Chars = /^.{11,}$/;
+            const max11Chars = /^.{11}$/;
             const oneUpper = /[A-Z]/;
             const oneLower = /[a-z]/;
             const oneDigit = /\d/;
@@ -121,8 +121,8 @@
             if (!onlyChars.test(lastName)) {
                 return showAlert("Last Name must contain only letters");
             }
-            if (!onlyNumbers.test(contact) || !min11Chars.test(contact)) {
-                return showAlert("Contact must be at least 11 digits and numeric only");
+            if (!onlyNumbers.test(contact) || !max11Chars.test(contact)) {
+                return showAlert("Contact must be 11 digits and numeric only");
             }
             if (!min8Chars.test(username)) {
                 return showAlert("Username must be at least 8 characters");
@@ -137,9 +137,6 @@
                 return showAlert("Passwords do not match");
             }
 
-            // alertDiv.classList.remove("d-none", "alert-danger");
-            // alertDiv.classList.add("alert-success");
-            // alertDiv.innerText = "Registration Successful";
 
             // Submit form after short delay
             setTimeout(() => {
@@ -154,7 +151,7 @@
             alertDiv.innerText = message;
         }
 
-        // Auto-hide and redirect
+        // Auto-hide and redirect (5 secs works with server-side data)
         window.onload = function () {
             const alerts = document.querySelectorAll(".alert:not(#alert)");
             alerts.forEach(alert => {

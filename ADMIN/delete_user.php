@@ -1,17 +1,22 @@
 <?php
-include('server.php'); // Connect to database
+include('server.php');
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $userId = intval($_POST['user_id']); // Get user ID from POST
+header('Content-Type: application/json');
 
-    // Delete user from database
-    $query = "DELETE FROM users WHERE user_id = $userId";
-    if (mysqli_query($conn, $query)) {
-        echo "success";
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['user_id'])) {
+    $userId = intval($_POST['user_id']);
+    $stmt = $conn->prepare("DELETE FROM users WHERE user_id = ?");
+    $stmt->bind_param("i", $userId);
+
+    if ($stmt->execute()) {
+        echo json_encode(['success' => true]);
     } else {
-        echo "error";
+        echo json_encode(['success' => false, 'error' => $stmt->error]);
     }
-} else {
-    echo "invalid request";
+
+    $stmt->close();
+    $conn->close();
+    exit;
 }
-?>
+
+echo json_encode(['success' => false, 'error' => 'Invalid request']);

@@ -2,15 +2,11 @@
 session_start();
 include('server.php'); // Make sure you include your database connection
 
-// // Prevent page from being cached
-// header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
-// header("Cache-Control: post-check=0, pre-check=0", false);
-// header("Pragma: no-cache");
 
 //If user is not logged in, redirect to guest page
 if(!isset($_SESSION['username'])){
     header("Location: login.php");
-    exit(); // It's a good practice to exit after a header redirect
+    exit();
 }
 
 // Fetch the logged-in user details
